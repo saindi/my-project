@@ -1,7 +1,6 @@
 import './Input.css'
 
 const Input = (props) => {
-    // eslint-disable-next-line react/prop-types
     const {type, placeholder= ''} = props
 
     return (
