@@ -1,6 +1,7 @@
 import './App.css'
 import Input from "./components/Input/Input.jsx";
 import MenuList from "./components/MenuList/MenuList.jsx";
+import pizzas from "./data.js";
 
 function App() {
     return (
@@ -13,7 +14,7 @@ function App() {
                 </form>
             </div>
 
-            <MenuList />
+            <MenuList pizzas={pizzas}/>
 
         </div>
     )

@@ -1,8 +1,9 @@
 import MenuItem from "../MenuItem/MenuItem.jsx";
-import pizzas from "../../data.js";
 import './MenuList.css'
 
-function MenuList() {
+function MenuList({pizzas}) {
+
+
     return (
         <div className="wrapper">
             <ul>
