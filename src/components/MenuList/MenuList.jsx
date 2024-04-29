@@ -3,7 +3,6 @@ import './MenuList.css'
 
 function MenuList({pizzas}) {
 
-
     return (
         <div className="wrapper">
             <ul>

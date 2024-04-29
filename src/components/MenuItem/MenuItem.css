@@ -47,3 +47,9 @@
 .pizza__price__disable  {
     font-size: 16px;
 }
+
+.counter_form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
