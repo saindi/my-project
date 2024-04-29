@@ -31,12 +31,8 @@ function MenuItem(props) {
                 <div className="pizza__info">
                     <p className="pizza__name">{data.name}</p>
                     <p className="pizza__ingredients">{data.ingredients.join(", ")}</p>
-                    {data.soldOut ? (
-                        <>
-                            <div className="pizza__actions__disable">
-                                <p className="pizza__price__disable">SOLD OUT</p>
-                            </div>
-                        </> ) :
+
+                    {!data.soldOut &&
                         <div className="pizza__actions">
                             <p className="pizza__price">€{data.unitPrice}</p>
                             {pizzaState.inBasket ? (
@@ -52,6 +48,13 @@ function MenuItem(props) {
                             }
                         </div>
                     }
+
+                    {data.soldOut &&
+                        <div className="pizza__actions__disable">
+                            <p className="pizza__price__disable">SOLD OUT</p>
+                        </div>
+                    }
+
                 </div>
             </li>
             <hr/>
