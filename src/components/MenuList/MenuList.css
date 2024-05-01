@@ -1,6 +1,15 @@
+ul {
+    width: 30em;
+}
+
+
 .wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
+}
+
+.message {
+    margin: 20px 0;
 }
