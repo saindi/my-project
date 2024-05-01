@@ -1,6 +1,6 @@
 import './App.css'
 import Input from "./components/Input/Input.jsx";
-import MenuList from "./components/MenuList/MenuList.jsx";
+import Menu from "./components/Menu/Menu.jsx";
 import {useState} from "react";
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
                 </form>
             </div>
 
-            <MenuList sortByValue={inputValue} />
+            <Menu sortByValue={inputValue} />
 
         </div>
     )

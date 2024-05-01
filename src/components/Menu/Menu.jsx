@@ -1,8 +1,8 @@
-import './MenuList.css';
-import MenuItem from "../MenuItem/MenuItem.jsx";
+import './Menu.css';
 import { useEffect, useState } from "react";
+import MenuList from "./MenuList/MenuList.jsx";
 
-function MenuList({ sortByValue }) {
+function Menu({ sortByValue }) {
     const [pizzas, setPizzas] = useState([]);
     const [filteredPizzas, setFilteredPizzas] = useState([]);
 
@@ -52,13 +52,11 @@ function MenuList({ sortByValue }) {
                 <p className="message">No pizzas found. Try another search.</p>
             ) : (
                 <ul>
-                    {filteredPizzas.map(pizza => (
-                        <MenuItem data={pizza} key={pizza.id} />
-                    ))}
+                    <MenuList menu={filteredPizzas} />
                 </ul>
             )}
         </div>
     );
 }
 
-export default MenuList;
+export default Menu;
