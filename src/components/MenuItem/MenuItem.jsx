@@ -5,23 +5,19 @@ import {useState} from "react";
 function MenuItem(props) {
     const {data} = props;
 
-    const [pizzaState, setPizzaState] = useState({inBasket: false, count: 0})
-
-    const addToCard = () => {
-        setPizzaState({count: 1, inBasket: true})
-    }
+    const [countInBasket , setCountInBasket] = useState(0)
 
     const deleteFromCard = () => {
-        setPizzaState({inBasket: false, count: 0})
+        setCountInBasket(0)
     }
 
     const incPizzaInCard = () => {
-        setPizzaState(prevState => ({...prevState, count: prevState.count + 1}))
+        setCountInBasket(prevState => prevState + 1)
     }
 
     const decPizzaInCard = () => {
-        if (pizzaState.count !== 1)
-            setPizzaState(prevState => ({...prevState, count: prevState.count - 1}))
+        if (countInBasket !== 1)
+            setCountInBasket(prevState => prevState - 1)
     }
 
     return (
@@ -35,16 +31,16 @@ function MenuItem(props) {
                     {!data.soldOut &&
                         <div className="pizza__actions">
                             <p className="pizza__price">€{data.unitPrice}</p>
-                            {pizzaState.inBasket ? (
+                            {countInBasket ? (
                                 <>
                                     <div className='counter_form'>
                                         <Button text='-' onClick={decPizzaInCard} type='button'/>
-                                        <div>{pizzaState.count}</div>
+                                        <div>{countInBasket}</div>
                                         <Button text='+' onClick={incPizzaInCard} type='button'/>
                                     </div>
                                     <Button text='DELETE' onClick={deleteFromCard} type='button'/>
                                 </>) :
-                                <Button text='ADD TO CARD' onClick={addToCard} type='button'/>
+                                <Button text='ADD TO CARD' onClick={incPizzaInCard} type='button'/>
                             }
                         </div>
                     }
