@@ -1,8 +1,9 @@
 import './Menu.css';
 import { useEffect, useState } from "react";
 import MenuList from "./MenuList/MenuList.jsx";
+import {Navigate} from "react-router-dom";
 
-function Menu({ sortByValue }) {
+function Menu({ isAuth, sortByValue }) {
     const [pizzas, setPizzas] = useState([]);
 
     const filteredPizzas = sortByValue
@@ -29,6 +30,11 @@ function Menu({ sortByValue }) {
 
         fetchPizzas();
     }, []);
+
+    if (!isAuth) {
+        return <Navigate to="/login" />
+    }
+
 
     if (pizzas.length === 0) {
         return (

@@ -1,0 +1,22 @@
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 30px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.text-yellow {
+    color: rgb(234 179 8);
+}
+
+.sub-title {
+    margin-bottom: 30px;
+}
