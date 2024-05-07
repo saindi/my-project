@@ -4,7 +4,12 @@ import MenuList from "./MenuList/MenuList.jsx";
 
 function Menu({ sortByValue }) {
     const [pizzas, setPizzas] = useState([]);
-    const [filteredPizzas, setFilteredPizzas] = useState([]);
+
+    const filteredPizzas = sortByValue
+        ? pizzas.filter(pizza =>
+            pizza.name.toLowerCase().includes(sortByValue.toLowerCase())
+        )
+        : pizzas;
 
     useEffect(() => {
         const fetchPizzas = async () => {
@@ -24,17 +29,6 @@ function Menu({ sortByValue }) {
 
         fetchPizzas();
     }, []);
-
-    useEffect(() => {
-        if (sortByValue) {
-            const filtered = pizzas.filter(pizza =>
-                pizza.name.toLowerCase().includes(sortByValue.toLowerCase())
-            );
-            setFilteredPizzas(filtered);
-        } else {
-            setFilteredPizzas(pizzas);
-        }
-    }, [sortByValue, pizzas]);
 
     if (pizzas.length === 0) {
         return (
