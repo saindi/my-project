@@ -47,9 +47,13 @@ function Menu() {
 
     return (
         <div className="wrapper">
-            <ul>
+            {filteredPizzas.length === 0 ? (
+                <p className="message">No pizzas found. Try another search.</p>
+            ) : (
+                <ul>
                     <MenuList menu={filteredPizzas} />
                 </ul>
+            )}
         </div>
     );
 }
