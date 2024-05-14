@@ -6,11 +6,11 @@ import UserContextProvider from "./context/UserContext.jsx";
 import SearchValueContextProvider from "./context/SearchValueContext.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <UserContextProvider>
-        <SearchValueContextProvider>
-            <BrowserRouter>
+    <BrowserRouter>
+        <UserContextProvider>
+            <SearchValueContextProvider>
                 <App/>
-            </BrowserRouter>
-        </ SearchValueContextProvider>
-    </UserContextProvider>
+            </ SearchValueContextProvider>
+        </UserContextProvider>
+    </BrowserRouter>
 );

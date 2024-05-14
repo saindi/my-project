@@ -1,5 +1,5 @@
 import './Layout.css'
-import {memo, useContext} from "react";
+import {useContext} from "react";
 import {Link, NavLink, Outlet} from "react-router-dom";
 import Input from "../Input/Input.jsx";
 import {UserContext} from "../../context/UserContext.jsx";

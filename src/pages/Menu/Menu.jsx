@@ -1,5 +1,5 @@
 import './Menu.css';
-import {useContext, useEffect, useMemo, useState} from "react";
+import {useContext, useMemo} from "react";
 import MenuList from "./MenuList/MenuList.jsx";
 import {Navigate} from "react-router-dom";
 import {UserContext} from "../../context/UserContext.jsx";
@@ -10,12 +10,10 @@ function Menu() {
     const {user} = useContext(UserContext);
     const {searchValue} = useContext(SearchValueContext);
 
-    const {data: pizzas, isLoading, error} = useFetch("https://react-fast-pizza-api.onrender.com/api/menu")
+    const {data, isLoading, error} = useFetch("https://react-fast-pizza-api.onrender.com/api/menu")
 
     const filteredPizzas = useMemo(() => {
-        console.log(`searchValue ${searchValue}`)
-        console.log(`pizzas ${pizzas.data}`)
-        const pizzas_data = pizzas.data
+        const pizzas_data = data.data
         if (searchValue) {
             return pizzas_data.filter(pizza =>
                 pizza.name.toLowerCase().includes(searchValue.toLowerCase())
@@ -23,7 +21,7 @@ function Menu() {
         } else {
             return pizzas_data;
         }
-    }, [searchValue, pizzas]);
+    }, [searchValue, data]);
 
     if (!user.isAuth) {
         return <Navigate to="/login" />
@@ -39,7 +37,7 @@ function Menu() {
         )
     }
 
-    if (error || pizzas.status !== "success") {
+    if (error || data.status !== "success") {
         return (
             <div className="wrapper m-4">
                 Sorry, but the page loaded with an error 😞
@@ -49,13 +47,9 @@ function Menu() {
 
     return (
         <div className="wrapper">
-            {filteredPizzas.length === 0 ? (
-                <p className="message">No pizzas found. Try another search.</p>
-            ) : (
-                <ul>
+            <ul>
                     <MenuList menu={filteredPizzas} />
                 </ul>
-            )}
         </div>
     );
 }

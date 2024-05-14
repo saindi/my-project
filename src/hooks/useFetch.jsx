@@ -23,8 +23,6 @@ const useFetch = (url) => {
             }
         }
 
-        console.log("use Fetch use Fetch use Fetch")
-
         getData();
 
     }, [url])
