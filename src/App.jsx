@@ -1,28 +1,18 @@
 import './App.css'
-import Menu from "./components/Menu/Menu.jsx";
-import {useState} from "react";
+import Menu from "./pages/Menu/Menu.jsx";
 import {Route, Routes} from "react-router-dom";
 import Layout from "./components/Layout/Layout.jsx";
-import SingIn from "./components/SingIn/SingIn.jsx";
-import About from "./components/About/About.jsx";
+import SingIn from "./pages/SingIn/SingIn.jsx";
+import About from "./pages/About/About.jsx";
 
 function App() {
-    const [isAuth, setIsAuth] = useState(false);
-    const [inputSearchValue, setInputValue] = useState("");
-
-    const handleSearchSubmit = (e) => {
-        e.preventDefault();
-        const value = e.target.elements.input.value;
-        setInputValue(value);
-    };
-
     return (
         <div>
             <Routes>
-                <Route element={<Layout isAuth={isAuth} handleSearchSubmit={handleSearchSubmit} />}>
+                <Route element={<Layout />}>
                     <Route path='/' element={<About />}/>
-                    <Route path='/menu' element={<Menu sortByValue={inputSearchValue} isAuth={isAuth} />}/>
-                    <Route path='/login' element={<SingIn isAuth={isAuth} setIsAuth={setIsAuth} />}/>
+                    <Route path='/menu' element={<Menu />}/>
+                    <Route path='/login' element={<SingIn />}/>
                 </Route>
             </Routes>
         </div>

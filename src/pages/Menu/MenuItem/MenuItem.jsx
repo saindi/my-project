@@ -1,5 +1,5 @@
 import './MenuItem.css'
-import Button from "../../Button/Button.jsx";
+import Button from "../../../components/Button/Button.jsx";
 import {useState} from "react";
 
 function MenuItem(props) {

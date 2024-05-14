@@ -1,14 +1,19 @@
 import {Navigate} from "react-router-dom";
-import Button from "../Button/Button.jsx";
-import Input from "../Input/Input.jsx";
+import { useContext } from "react";
+import Button from "../../components/Button/Button.jsx";
+import Input from "../../components/Input/Input.jsx";
+import {UserContext} from "../../context/UserContext.jsx";
 
-function SingIn({isAuth, setIsAuth}) {
-    const handleLoginSubmit = () => {
-        setIsAuth(true);
+function SingIn() {
+    const {user, changeUser} = useContext(UserContext);
+
+    const handleLoginSubmit = (e) => {
+        const value = e.target.elements.username.value;
+        changeUser(value, true);
         return <Navigate to="/menu" />
     };
 
-    if (isAuth) {
+    if (user.isAuth) {
         return <Navigate to="/menu" />
     }
 

@@ -1,5 +1,5 @@
 import './About.css'
-import Button from "../Button/Button.jsx";
+import Button from "../../components/Button/Button.jsx";
 import {useNavigate} from "react-router-dom";
 
 function About() {
