@@ -14,6 +14,9 @@ function Menu() {
 
     const filteredPizzas = useMemo(() => {
         const pizzas_data = data.data
+
+        if (error || data.status !== "success" || !pizzas_data) return [];
+
         if (searchValue) {
             return pizzas_data.filter(pizza =>
                 pizza.name.toLowerCase().includes(searchValue.toLowerCase())
@@ -33,14 +36,6 @@ function Menu() {
                 <div className="spinner-border" role="status">
                     <span className="visually-hidden">Loading...</span>
                 </div>
-            </div>
-        )
-    }
-
-    if (error || data.status !== "success") {
-        return (
-            <div className="wrapper m-4">
-                Sorry, but the page loaded with an error 😞
             </div>
         )
     }

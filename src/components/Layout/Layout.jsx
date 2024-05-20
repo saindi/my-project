@@ -20,11 +20,15 @@ function Layout() {
             <div className="header">
                 <Link className='text-nav' to="/">Pizza Day</Link>
 
-                <Link className='text-nav' to="/menu">Menu</Link>
+                <div className="center-nav">
+                    <Link className='text-nav nav-element' to="/menu">Menu</Link>
+                    <Link className='text-nav nav-element' to="/order/new">Create order</Link>
+                </div>
+
 
                 {user.isAuth ? (
                     <form onSubmit={handleSearchSubmit}>
-                        <Input type='text' placeholder='Search for the order' name='searhValueInput' required={false}/>
+                        <Input type='text' placeholder='Search' name='searhValueInput' required={false}/>
                     </form>
                 ) : (
                     <NavLink to='/login' className="text-nav">Login</NavLink>
