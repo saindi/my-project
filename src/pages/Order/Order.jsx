@@ -2,9 +2,10 @@ import './Order.css';
 import {UserContext} from "../../context/UserContext.jsx";
 import {Navigate} from "react-router-dom";
 import {useContext} from "react";
-import {useForm} from "react-hook-form";
+import {useForm, Controller} from "react-hook-form";
 import * as Yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
+import Input from "../../components/Input/Input.jsx";
 
 
 const phoneRegExp = /^(\+\d{1,3}[- ]?)?\d{10}$/
@@ -19,7 +20,7 @@ const formSchema = Yup.object().shape({
 
 function Order() {
     const {user} = useContext(UserContext);
-    const {register, handleSubmit, formState: {errors, isValid}} = useForm({
+    const {control, register, handleSubmit, formState: {errors, isValid}} = useForm({
         mode: "onBlur",
         resolver: yupResolver(formSchema),
     });
@@ -41,7 +42,14 @@ function Order() {
                 <div className="form-group">
                     <div className="form-item">
                         <label className="title-input">First Name</label>
-                        <input {...register('username')} type="text" placeholder="First Name" className="input"/>
+
+                        <Controller
+                            control={control}
+                            name="username"
+                            render={({ field }) =>
+                                <Input {...field} placeholder="First Name" type="text" className="input" />
+                            }
+                        />
                     </div>
 
                     {errors.username && <p className={"error-msg"}>{errors.username.message}</p>}
@@ -50,7 +58,13 @@ function Order() {
                 <div className="form-group">
                     <div className="form-item">
                         <label className="title-input">Phone number</label>
-                        <input {...register('phoneNumber')} type="text" placeholder="Phone number" className="input"/>
+                        <Controller
+                            control={control}
+                            name="phoneNumber"
+                            render={({ field }) =>
+                                <Input {...field} placeholder="Phone number" type="text" className="input" />
+                            }
+                        />
                     </div>
                     {errors.phoneNumber && <p className={"error-msg"}>{errors.phoneNumber.message}</p>}
                 </div>
@@ -58,13 +72,25 @@ function Order() {
                 <div className="form-group">
                     <div className="form-item">
                         <label className="title-input">Address</label>
-                        <input {...register('address')} type="text" placeholder="Address" className="input"/>
+                        <Controller
+                            control={control}
+                            name="address"
+                            render={({ field }) =>
+                                <Input {...field} placeholder="First Name" type="text" className="input" />
+                            }
+                        />
                     </div>
                     {errors.address && <p className={"error-msg"}>{errors.address.message}</p>}
                 </div>
 
                 <div className="form-solo">
-                    <input {...register('isPriority')} type="checkbox" className="input-checkbox"/>
+                    <Controller
+                        control={control}
+                        name="isPriority"
+                        render={({ field }) =>
+                            <Input {...field} placeholder="First Name" type="checkbox" className="input-checkbox" />
+                        }
+                    />
                     <label>Want to yo give your order priority?</label>
                 </div>
 

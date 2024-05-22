@@ -1,11 +1,8 @@
-import './Input.css'
-
-const Input = (props) => {
-    const {type, placeholder= '', name= 'input', className = "input", required = true} = props
-
+// Input.jsx
+const Input = ({ value, onChange, className="input",...props }) => {
     return (
-        <input type={type} placeholder={placeholder} name={name} className={className}  required={required} />
-    )
-}
+        <input value={value || ''} onChange={onChange} {...props} className={className}/>
+    );
+};
 
 export default Input;
