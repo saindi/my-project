@@ -26,11 +26,11 @@ function SingIn() {
                         <form onSubmit={handleLoginSubmit}>
 
                             <p className="m-2">
-                                <Input className="form-control input" type='text' placeholder='Username' name='username' />
+                                <Input className="form-control input" type='text' placeholder='Username' name='username' required={true} />
                             </p>
 
                             <p className="m-2">
-                                <Input className="form-control input" type='password' placeholder='Password' name='password' />
+                                <Input className="form-control input" type='password' placeholder='Password' name='password' required={true} />
                             </p>
 
                             <div className="d-grid m-2">
