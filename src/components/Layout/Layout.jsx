@@ -1,7 +1,6 @@
 import './Layout.css'
 import {useContext} from "react";
 import {Link, NavLink, Outlet} from "react-router-dom";
-import Input from "../Input/Input.jsx";
 import {UserContext} from "../../context/UserContext.jsx";
 import {SearchValueContext} from "../../context/SearchValueContext.jsx";
 
@@ -28,7 +27,7 @@ function Layout() {
 
                 {user.isAuth ? (
                     <form onSubmit={handleSearchSubmit}>
-                        <Input type='text' placeholder='Search' name='searhValueInput' required={false}/>
+                        <input type='text' placeholder='Search' name='searhValueInput' className='input' />
                     </form>
                 ) : (
                     <NavLink to='/login' className="text-nav">Login</NavLink>

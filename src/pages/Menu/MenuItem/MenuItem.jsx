@@ -1,23 +1,41 @@
 import './MenuItem.css'
 import Button from "../../../components/Button/Button.jsx";
-import {useState} from "react";
+import {useState, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {addToCart, decrementFromCart, deleteFromCart, incrementFromCart} from "../../../store/slices/cardSlice.js";
 
 function MenuItem(props) {
     const {data} = props;
 
-    const [countInBasket , setCountInBasket] = useState(0)
+    const [cartItem , setCartItem] = useState(null)
 
-    const deleteFromCard = () => {
-        setCountInBasket(0)
+    const dispatch = useDispatch();
+    const cart = useSelector(state => state.cart.cartItems);
+
+    useEffect(() => {
+        const itemInCart = cart.find(item => item.id === data.id);
+        if (itemInCart) {
+            setCartItem(itemInCart);
+        } else {
+            setCartItem(null);
+        }
+    }, [cart, data.id]);
+
+    const addPizzaToCard = (data) => {
+        dispatch(addToCart(data))
+        setCartItem(data)
     }
 
-    const incPizzaInCard = () => {
-        setCountInBasket(prevState => prevState + 1)
+    const deleteFromCard = (data) => {
+        dispatch(deleteFromCart(data))
+    }
+
+    const incPizzaInCard = (data) => {
+        dispatch(incrementFromCart(data))
     }
 
     const decPizzaInCard = () => {
-        if (countInBasket !== 1)
-            setCountInBasket(prevState => prevState - 1)
+        dispatch(decrementFromCart(data))
     }
 
     return (
@@ -31,16 +49,16 @@ function MenuItem(props) {
                     {!data.soldOut &&
                         <div className="pizza__actions">
                             <p className="pizza__price">€{data.unitPrice}</p>
-                            {countInBasket ? (
+                            {cartItem ? (
                                 <>
                                     <div className='counter_form'>
-                                        <Button text='-' onClick={decPizzaInCard} type='button'/>
-                                        <div>{countInBasket}</div>
-                                        <Button text='+' onClick={incPizzaInCard} type='button'/>
+                                        <Button text='-' onClick={() => decPizzaInCard(data)} type='button'/>
+                                        <div>{cartItem.qty}</div>
+                                        <Button text='+' onClick={() => incPizzaInCard(data)} type='button'/>
                                     </div>
-                                    <Button text='DELETE' onClick={deleteFromCard} type='button'/>
+                                    <Button text='DELETE' onClick={() => deleteFromCard(data)} type='button'/>
                                 </>) :
-                                <Button text='ADD TO CARD' onClick={incPizzaInCard} type='button'/>
+                                <Button text='ADD TO CARD' onClick={() => addPizzaToCard(data)} type='button'/>
                             }
                         </div>
                     }
